@@ -17,14 +17,18 @@ var spotify = new Spotify({
 //   console.log(`${index}: ${val}`);
 // });
 // var input = process.argv[2]
-var infoEntered = process.argv
-var input = process.argv[2]
-var title = ''
-if (process.argv[3] !== undefined) {
-  for (i = 3; i < infoEntered.length; i++) {
-    title += infoEntered[i] + ''
-  };
-};      
+// var input = process.argv.slice(2).join(" ");
+var input = process.argv[2];
+// Joining the remaining arguments since an actor or tv show name may contain spaces
+// var title = process.argv.slice(3).join(" ");
+// var infoEntered = process.argv;
+// var input = process.argv[2];
+// var title = ""
+// if (process.argv[3] !== undefined) {
+//   for (i = 3; i < infoEntered.length; i++) {
+//     title += infoEntered[i] + " ";
+//   };
+// };      
 // Functions
 function spotifyThis (song) {
   spotify.search({ type: 'track', query: song }, function (err, data) {
@@ -35,12 +39,24 @@ function spotifyThis (song) {
     console.log('\nArtist: ' + songs.artists[0].name + '\nSong Title: ' + songs.name + ' \nAlbum name: ' + songs.album.name + '\nPreview: ' + songs.preview_url)
   })
 }
+// function movie() {
+//   if (process.argv[3] === undefined) {
+//     title = "Mr.Nobody";
+//     movieThis();
+//   } else if (title !== undefined) {
+//     titleSplit = title.split(" ");
+//     title = titleSplit.join("+");
+//     movieThis();
+//   };
+// };
 function movieThis (movie) {
   var queryURL = 'http://www.omdbapi.com/?t=' + movie + '&y=&plot=short&apikey=trilogy';
 
+      
   request(queryURL, function (error, response, body) {
     if (!error && response.statusCode === 200) {
       console.log('Release Year: ' + JSON.parse(body).Year)
+      console.log(body)
     }
   })
 }
