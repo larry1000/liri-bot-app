@@ -18,7 +18,7 @@ var spotify = new Spotify({
 // });
 // var input = process.argv[2]
 // var input = process.argv.slice(2).join(" ");
-var input = process.argv[2];
+var input = process.argv[2]
 // Joining the remaining arguments since an actor or tv show name may contain spaces
 // var title = process.argv.slice(3).join(" ");
 // var infoEntered = process.argv;
@@ -55,8 +55,8 @@ function movieThis (movie) {
       
   request(queryURL, function (error, response, body) {
     if (!error && response.statusCode === 200) {
-      console.log('Release Year: ' + JSON.parse(body).Year)
-      console.log(body)
+      console.log('Release Year: ' + JSON.parse(body).Year + ' Rating: ' + JSON.parse(body).imdbRating)
+      
     }
   })
 }
